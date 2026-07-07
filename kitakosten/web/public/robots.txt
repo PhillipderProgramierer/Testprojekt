@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kitakosten.de/sitemap-index.xml

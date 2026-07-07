@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white text-slate-800 antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-slate-900;
+    text-wrap: balance;
+  }
+}
+
+/* Schlichte Typografie für Ratgeber-Artikel (ersetzt @tailwindcss/typography). */
+.artikel {
+  @apply text-slate-700;
+}
+.artikel h2 {
+  @apply mt-8 mb-3 text-2xl font-semibold;
+}
+.artikel h3 {
+  @apply mt-6 mb-2 text-xl font-semibold;
+}
+.artikel p {
+  @apply my-4 leading-relaxed;
+}
+.artikel ul {
+  @apply my-4 list-disc space-y-1 pl-6;
+}
+.artikel ol {
+  @apply my-4 list-decimal space-y-1 pl-6;
+}
+.artikel a {
+  @apply text-brand-700 underline hover:text-brand-800;
+}
+.artikel strong {
+  @apply font-semibold text-slate-900;
+}

@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+interface MdModul {
+  frontmatter: { title: string; description: string; aktualisiert?: string };
+  url?: string;
+}
+const module = import.meta.glob<MdModul>("./*.md", { eager: true });
+const artikel = Object.values(module)
+  .filter((m) => m.url)
+  .map((m) => ({ ...m.frontmatter, url: m.url! }))
+  .sort((a, b) => a.title.localeCompare(b.title, "de"));
+
+const title = "Ratgeber rund um Kita-Kosten | KitaKosten";
+const description =
+  "Verständliche Artikel zu Kita-Gebühren, Geschwisterrabatt und Steuer – damit Sie bei den Betreuungskosten den Überblick behalten.";
+---
+
+<BaseLayout title={title} description={description} path="/ratgeber/">
+  <div class="mx-auto max-w-content px-4 py-8">
+    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Ratgeber</h1>
+    <p class="mt-3 max-w-2xl text-slate-600">
+      Hintergründe und Tipps rund um Kita-Gebühren und Kinderbetreuungskosten.
+    </p>
+
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        artikel.map((a) => (
+          <li>
+            <a
+              href={a.url}
+              class="block h-full rounded-2xl border border-slate-200 p-6 transition-colors hover:border-brand-300 hover:bg-brand-50"
+            >
+              <h2 class="text-lg font-semibold text-slate-900">{a.title}</h2>
+              <p class="mt-2 text-sm text-slate-600">{a.description}</p>
+              {a.aktualisiert && (
+                <p class="mt-3 text-xs text-slate-400">Stand: {a.aktualisiert}</p>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

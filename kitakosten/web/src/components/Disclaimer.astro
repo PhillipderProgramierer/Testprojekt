@@ -1,0 +1,27 @@
+---
+export interface Props {
+  quelleUrl?: string | null;
+  satzungStand?: string;
+}
+const { quelleUrl, satzungStand } = Astro.props;
+---
+
+<aside class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+  <p>
+    <strong class="text-slate-800">Hinweis:</strong> Alle Angaben ohne Gewähr und keine
+    Rechtsberatung. Maßgeblich ist ausschließlich die aktuelle Satzung der jeweiligen Kommune. Die
+    tatsächlichen Beiträge können abweichen, z. B. je nach Träger der Einrichtung.
+  </p>
+  <p class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-500">
+    {satzungStand && <span>Stand der Satzung: {satzungStand}</span>}
+    {
+      quelleUrl ? (
+        <a class="text-brand-700 underline hover:text-brand-800" href={quelleUrl} rel="nofollow">
+          Zur Original-Satzung
+        </a>
+      ) : (
+        <span class="text-amber-700">TODO: Quellen-URL ergänzen</span>
+      )
+    }
+  </p>
+</aside>
