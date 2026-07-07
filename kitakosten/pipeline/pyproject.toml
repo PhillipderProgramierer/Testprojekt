@@ -1,0 +1,22 @@
+[project]
+name = "kitakosten-pipeline"
+version = "0.1.0"
+description = "Datenpipeline für KitaKosten: Satzungen laden, per LLM extrahieren, validieren."
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "pypdf>=4.0",
+    "jsonschema>=4.21",
+    "anthropic>=0.40",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["pipeline"]
+package-dir = { "pipeline" = "." }
