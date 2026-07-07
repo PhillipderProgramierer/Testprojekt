@@ -1,0 +1,97 @@
+{
+  "name": "Köln",
+  "slug": "koeln",
+  "ags": "05315000",
+  "bundesland": "Nordrhein-Westfalen",
+  "einwohner": 1073000,
+  "modell": {
+    "typ": "einkommensstaffel",
+    "einkommensbasis": "brutto",
+    "beschreibung": "Der Elternbeitrag richtet sich nach dem Bruttojahreseinkommen des Haushalts, dem Alter des Kindes und dem Betreuungsumfang.",
+    "altersgruppen": [
+      { "key": "u3", "label": "unter 3 Jahre", "alter_von_monate": 0, "alter_bis_monate": 36 },
+      { "key": "ue3", "label": "3 Jahre bis Einschulung", "alter_von_monate": 36, "alter_bis_monate": 84 }
+    ],
+    "einkommensstufen": [
+      {
+        "von": 0,
+        "bis": 25000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u3": 0, "ue3": 0 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u3": 0, "ue3": 0 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u3": 0, "ue3": 0 } }
+        ]
+      },
+      {
+        "von": 25000,
+        "bis": 37000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u3": 60, "ue3": 40 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u3": 90, "ue3": 60 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u3": 120, "ue3": 80 } }
+        ]
+      },
+      {
+        "von": 37000,
+        "bis": 49000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u3": 120, "ue3": 80 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u3": 175, "ue3": 115 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u3": 230, "ue3": 150 } }
+        ]
+      },
+      {
+        "von": 49000,
+        "bis": 61000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u3": 190, "ue3": 125 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u3": 275, "ue3": 180 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u3": 360, "ue3": 235 } }
+        ]
+      },
+      {
+        "von": 61000,
+        "bis": 73000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u3": 250, "ue3": 165 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u3": 360, "ue3": 235 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u3": 470, "ue3": 305 } }
+        ]
+      },
+      {
+        "von": 73000,
+        "bis": null,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u3": 300, "ue3": 195 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u3": 430, "ue3": 280 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u3": 560, "ue3": 365 } }
+        ]
+      }
+    ]
+  },
+  "geschwisterrabatt": {
+    "typ": "zweitkind_frei",
+    "wert": null,
+    "ab_kinderzahl": 2,
+    "beschreibung": "Werden mehrere Kinder eines Haushalts gleichzeitig betreut, ist für die Geschwisterkinder kein Elternbeitrag zu zahlen."
+  },
+  "essensgeld": {
+    "betrag": null,
+    "von": 40,
+    "bis": 100,
+    "hinweis": "Die Verpflegungskosten werden je nach Einrichtung unterschiedlich erhoben (Beispiel-Spanne, vor Launch prüfen)."
+  },
+  "beitragsfreie_jahre": {
+    "anzahl": 2,
+    "ab_alter_monate": 48,
+    "beschreibung": "Die letzten beiden Kindergartenjahre vor der Einschulung sind beitragsfrei."
+  },
+  "hinweise": [
+    "Maßgeblich ist das Bruttojahreseinkommen des Haushalts im Sinne der Elternbeitragssatzung.",
+    "Für die beitragsfreien Jahre kann weiterhin Verpflegungsgeld anfallen."
+  ],
+  "quelle_url": null,
+  "satzung_stand": "2024-08-01",
+  "zuletzt_geprueft": "2026-07-07",
+  "konfidenz": "extrahiert"
+}

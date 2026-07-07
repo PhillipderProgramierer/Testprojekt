@@ -1,0 +1,31 @@
+{
+  "name": "Berlin",
+  "slug": "berlin",
+  "ags": "11000000",
+  "bundesland": "Berlin",
+  "einwohner": 3677000,
+  "modell": {
+    "typ": "beitragsfrei",
+    "beschreibung": "In Berlin ist die Kindertagesbetreuung grundsätzlich beitragsfrei. Eltern zahlen lediglich einen Anteil für die Verpflegung."
+  },
+  "geschwisterrabatt": {
+    "typ": "keiner",
+    "wert": null,
+    "beschreibung": "Entfällt, da die Betreuung beitragsfrei ist."
+  },
+  "essensgeld": {
+    "betrag": 23,
+    "von": null,
+    "bis": null,
+    "hinweis": "Fester monatlicher Verpflegungsbeitrag (Beispiel-Wert, vor Launch prüfen)."
+  },
+  "beitragsfreie_jahre": null,
+  "hinweise": [
+    "Die Betreuung selbst ist beitragsfrei; es fällt lediglich ein monatlicher Verpflegungsbeitrag an.",
+    "Für die Betreuung wird ein Kita-Gutschein benötigt, der beim zuständigen Jugendamt beantragt wird."
+  ],
+  "quelle_url": null,
+  "satzung_stand": "2024-01-01",
+  "zuletzt_geprueft": "2026-07-07",
+  "konfidenz": "extrahiert"
+}

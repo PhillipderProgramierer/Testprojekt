@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kitakosten.de/schema/gebuehrenmodell.schema.json",
+  "title": "Kita-Gebührenmodell einer Kommune",
+  "description": "Beschreibt das Elternbeitragsmodell einer deutschen Kommune vollständig als Daten. Die Berechnungslogik interpretiert dieses JSON generisch – es wird niemals kommunenspezifischer Code geschrieben.",
+  "type": "object",
+  "required": [
+    "name",
+    "slug",
+    "bundesland",
+    "modell",
+    "konfidenz",
+    "satzung_stand",
+    "zuletzt_geprueft"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Offizieller Name der Kommune, z. B. \"Stuttgart\".",
+      "minLength": 1
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-Slug (kleingeschrieben, nur a-z, 0-9 und Bindestrich).",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "ags": {
+      "type": ["string", "null"],
+      "description": "Amtlicher Gemeindeschlüssel (AGS), 5–8 Stellen. Optional.",
+      "pattern": "^[0-9]{5,8}$"
+    },
+    "bundesland": {
+      "type": "string",
+      "description": "Bundesland der Kommune.",
+      "enum": [
+        "Baden-Württemberg",
+        "Bayern",
+        "Berlin",
+        "Brandenburg",
+        "Bremen",
+        "Hamburg",
+        "Hessen",
+        "Mecklenburg-Vorpommern",
+        "Niedersachsen",
+        "Nordrhein-Westfalen",
+        "Rheinland-Pfalz",
+        "Saarland",
+        "Sachsen",
+        "Sachsen-Anhalt",
+        "Schleswig-Holstein",
+        "Thüringen"
+      ]
+    },
+    "einwohner": {
+      "type": ["integer", "null"],
+      "description": "Einwohnerzahl (für interne Verlinkung ähnlich großer Kommunen). Optional.",
+      "minimum": 0
+    },
+    "modell": {
+      "description": "Das eigentliche Gebührenmodell. Der Typ bestimmt die Struktur.",
+      "oneOf": [
+        { "$ref": "#/$defs/modellBeitragsfrei" },
+        { "$ref": "#/$defs/modellPauschale" },
+        { "$ref": "#/$defs/modellEinkommensstaffel" },
+        { "$ref": "#/$defs/modellFormel" }
+      ]
+    },
+    "geschwisterrabatt": { "$ref": "#/$defs/geschwisterrabatt" },
+    "essensgeld": { "$ref": "#/$defs/essensgeld" },
+    "beitragsfreie_jahre": { "$ref": "#/$defs/beitragsfreieJahre" },
+    "hinweise": {
+      "type": "array",
+      "description": "Freitext-Hinweise, die auf der Kommunenseite angezeigt werden (z. B. Ermäßigungen, Sonderregeln).",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "quelle_url": {
+      "type": ["string", "null"],
+      "description": "URL zur Original-Satzung oder Stadtportal-Seite. Leer/null erlaubt, dann ist ein TODO zu setzen.",
+      "format": "uri"
+    },
+    "satzung_stand": {
+      "type": "string",
+      "description": "Datum des Standes der zugrunde liegenden Satzung (ISO 8601, YYYY-MM-DD).",
+      "format": "date"
+    },
+    "zuletzt_geprueft": {
+      "type": "string",
+      "description": "Datum der letzten manuellen Prüfung/Pflege (ISO 8601, YYYY-MM-DD).",
+      "format": "date"
+    },
+    "konfidenz": {
+      "type": "string",
+      "description": "Vertrauensniveau der Daten. Bei != \"verifiziert\" zeigt die Website einen deutlichen Hinweis.",
+      "enum": ["verifiziert", "extrahiert", "unsicher"]
+    }
+  },
+  "$defs": {
+    "altersgruppe": {
+      "type": "object",
+      "description": "Eine Altersgruppe, definiert über einen Altersbereich in Monaten. Die Berechnung ordnet das Kind der ersten passenden Gruppe zu.",
+      "required": ["key", "label", "alter_von_monate", "alter_bis_monate"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Kurzschlüssel, referenziert in den betraege-Objekten (z. B. \"u3\", \"ue3\", \"u2\", \"2_3\").",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "alter_von_monate": { "type": "integer", "minimum": 0 },
+        "alter_bis_monate": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "betreuungsstufe": {
+      "type": "object",
+      "description": "Eine Betreuungsumfang-Stufe (Wochenstunden). Die Berechnung wählt die Stufe, deren Bereich die angefragten Stunden enthält.",
+      "required": ["stunden_von", "stunden_bis", "label", "betraege"],
+      "additionalProperties": false,
+      "properties": {
+        "stunden_von": { "type": "number", "minimum": 0 },
+        "stunden_bis": { "type": "number", "minimum": 0 },
+        "label": { "type": "string", "minLength": 1 },
+        "betraege": {
+          "type": "object",
+          "description": "Monatlicher Beitrag in Euro je Altersgruppen-Key.",
+          "minProperties": 1,
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1500 }
+        }
+      }
+    },
+    "modellBeitragsfrei": {
+      "type": "object",
+      "required": ["typ"],
+      "additionalProperties": false,
+      "properties": {
+        "typ": { "const": "beitragsfrei" },
+        "beschreibung": { "type": "string" }
+      }
+    },
+    "modellPauschale": {
+      "type": "object",
+      "description": "Feste Beträge je Altersgruppe und Betreuungsumfang, unabhängig vom Einkommen.",
+      "required": ["typ", "altersgruppen", "betreuungsstufen"],
+      "additionalProperties": false,
+      "properties": {
+        "typ": { "const": "pauschale" },
+        "altersgruppen": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/altersgruppe" }
+        },
+        "betreuungsstufen": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/betreuungsstufe" }
+        },
+        "beschreibung": { "type": "string" }
+      }
+    },
+    "modellEinkommensstaffel": {
+      "type": "object",
+      "description": "Beitrag abhängig von Einkommensstufe × Betreuungsumfang × Altersgruppe.",
+      "required": ["typ", "einkommensbasis", "altersgruppen", "einkommensstufen"],
+      "additionalProperties": false,
+      "properties": {
+        "typ": { "const": "einkommensstaffel" },
+        "einkommensbasis": {
+          "type": "string",
+          "description": "Ob sich die Einkommensstufen auf das Brutto- oder Nettojahreseinkommen beziehen.",
+          "enum": ["brutto", "netto"]
+        },
+        "altersgruppen": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/altersgruppe" }
+        },
+        "einkommensstufen": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Einkommensstufen, aufsteigend, lückenlos und überschneidungsfrei.",
+          "items": {
+            "type": "object",
+            "required": ["von", "bis", "betreuungsstufen"],
+            "additionalProperties": false,
+            "properties": {
+              "von": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Untere Grenze des Jahreseinkommens (inklusive)."
+              },
+              "bis": {
+                "type": ["number", "null"],
+                "description": "Obere Grenze des Jahreseinkommens (exklusive). null = offen nach oben."
+              },
+              "betreuungsstufen": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "$ref": "#/$defs/betreuungsstufe" }
+              }
+            }
+          }
+        },
+        "beschreibung": { "type": "string" }
+      }
+    },
+    "modellFormel": {
+      "type": "object",
+      "description": "Prozentualer Anteil vom Einkommen mit Min/Max-Deckel, optional gewichtet nach Alter und Betreuungsumfang.",
+      "required": ["typ", "einkommensbasis", "prozentsatz", "basis", "min", "max", "altersgruppen"],
+      "additionalProperties": false,
+      "properties": {
+        "typ": { "const": "formel" },
+        "einkommensbasis": { "type": "string", "enum": ["brutto", "netto"] },
+        "prozentsatz": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Prozentsatz, der auf das Einkommen (gem. basis) angewandt wird."
+        },
+        "basis": {
+          "type": "string",
+          "enum": ["monat", "jahr"],
+          "description": "Ob der Prozentsatz auf das Monats- oder Jahreseinkommen angewandt wird. Ergebnis ist stets ein Monatsbeitrag (bei \"jahr\" wird durch 12 geteilt)."
+        },
+        "min": { "type": "number", "minimum": 0, "maximum": 1500 },
+        "max": { "type": "number", "minimum": 0, "maximum": 1500 },
+        "altersgruppen": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/altersgruppe" }
+        },
+        "altersfaktoren": {
+          "type": "object",
+          "description": "Multiplikator je Altersgruppen-Key (Standard 1.0).",
+          "additionalProperties": { "type": "number", "minimum": 0 }
+        },
+        "betreuungsfaktoren": {
+          "type": "array",
+          "description": "Optionale Gewichtung nach Wochenstunden. Wird die Stunde in keinem Bereich gefunden, gilt Faktor 1.0.",
+          "items": {
+            "type": "object",
+            "required": ["stunden_von", "stunden_bis", "faktor", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "stunden_von": { "type": "number", "minimum": 0 },
+              "stunden_bis": { "type": "number", "minimum": 0 },
+              "faktor": { "type": "number", "minimum": 0 },
+              "label": { "type": "string" }
+            }
+          }
+        },
+        "beschreibung": { "type": "string" }
+      }
+    },
+    "geschwisterrabatt": {
+      "type": "object",
+      "description": "Ermäßigung, wenn mehrere Kinder eines Haushalts betreut werden. Modelliert die Ermäßigung für das aktuell berechnete Kind, sofern es mindestens ein weiteres betreutes Geschwisterkind gibt.",
+      "required": ["typ"],
+      "additionalProperties": false,
+      "properties": {
+        "typ": {
+          "type": "string",
+          "enum": ["prozent", "festbetrag", "zweitkind_frei", "keiner"]
+        },
+        "wert": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Bei typ=prozent: Rabatt in Prozent. Bei typ=festbetrag: Abzug in Euro. Sonst null."
+        },
+        "ab_kinderzahl": {
+          "type": "integer",
+          "minimum": 2,
+          "default": 2,
+          "description": "Ab wie vielen gleichzeitig betreuten Kindern der Rabatt greift."
+        },
+        "beschreibung": { "type": "string" }
+      }
+    },
+    "essensgeld": {
+      "type": ["object", "null"],
+      "description": "Verpflegungskosten, die zusätzlich zum Elternbeitrag anfallen. Wird separat ausgewiesen.",
+      "additionalProperties": false,
+      "properties": {
+        "betrag": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Fester Monatsbetrag in Euro, falls bekannt."
+        },
+        "von": { "type": ["number", "null"], "minimum": 0 },
+        "bis": { "type": ["number", "null"], "minimum": 0 },
+        "hinweis": { "type": "string" }
+      }
+    },
+    "beitragsfreieJahre": {
+      "type": ["object", "null"],
+      "description": "Regelung zu beitragsfreien Betreuungsjahren (z. B. letztes Kindergartenjahr vor Einschulung). Setzt den Elternbeitrag ab einem Alter auf 0 (Essensgeld kann weiter anfallen).",
+      "additionalProperties": false,
+      "properties": {
+        "anzahl": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Anzahl beitragsfreier Jahre."
+        },
+        "ab_alter_monate": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Ab diesem Alter (in Monaten) ist die Betreuung beitragsfrei. null = keine altersbasierte Freistellung."
+        },
+        "beschreibung": { "type": "string" }
+      }
+    }
+  }
+}

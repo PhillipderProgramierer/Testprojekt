@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+web/dist/
+.astro/
+**/.astro/
+
+# Downloaded raw statutes (never committed)
+data/quellen/*
+!data/quellen/.gitkeep
+
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Environment
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+*.log

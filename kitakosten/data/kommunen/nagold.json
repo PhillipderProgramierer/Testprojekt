@@ -1,0 +1,50 @@
+{
+  "name": "Nagold",
+  "slug": "nagold",
+  "ags": "08235047",
+  "bundesland": "Baden-Württemberg",
+  "einwohner": 24500,
+  "modell": {
+    "typ": "formel",
+    "einkommensbasis": "brutto",
+    "prozentsatz": 2.0,
+    "basis": "monat",
+    "min": 30,
+    "max": 350,
+    "beschreibung": "Der Elternbeitrag wird als prozentualer Anteil des monatlichen Bruttoeinkommens berechnet, gedeckelt durch einen Mindest- und Höchstbetrag, gewichtet nach Alter und Betreuungsumfang.",
+    "altersgruppen": [
+      { "key": "u3", "label": "unter 3 Jahre", "alter_von_monate": 0, "alter_bis_monate": 36 },
+      { "key": "ue3", "label": "3 Jahre bis Einschulung", "alter_von_monate": 36, "alter_bis_monate": 84 }
+    ],
+    "altersfaktoren": {
+      "u3": 1.0,
+      "ue3": 0.7
+    },
+    "betreuungsfaktoren": [
+      { "stunden_von": 0, "stunden_bis": 25, "faktor": 0.7, "label": "bis 25 Std./Woche" },
+      { "stunden_von": 25, "stunden_bis": 35, "faktor": 1.0, "label": "über 25 bis 35 Std./Woche" },
+      { "stunden_von": 35, "stunden_bis": 45, "faktor": 1.3, "label": "über 35 bis 45 Std./Woche" }
+    ]
+  },
+  "geschwisterrabatt": {
+    "typ": "festbetrag",
+    "wert": 40,
+    "ab_kinderzahl": 2,
+    "beschreibung": "Für jedes weitere gleichzeitig betreute Kind wird ein fester Betrag von 40 € vom Beitrag abgezogen."
+  },
+  "essensgeld": {
+    "betrag": 60,
+    "von": null,
+    "bis": null,
+    "hinweis": "Durchschnittliches Verpflegungsgeld pro Monat (Beispiel-Wert, vor Launch prüfen)."
+  },
+  "beitragsfreie_jahre": null,
+  "hinweise": [
+    "Das Modell rechnet mit einem Prozentsatz des monatlichen Bruttoeinkommens, begrenzt durch Mindest- und Höchstbetrag.",
+    "Die konkreten Faktoren und Deckelbeträge sind Beispielwerte und vor Launch anhand der Satzung zu prüfen."
+  ],
+  "quelle_url": null,
+  "satzung_stand": "2024-01-01",
+  "zuletzt_geprueft": "2026-07-07",
+  "konfidenz": "extrahiert"
+}

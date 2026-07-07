@@ -1,0 +1,41 @@
+{
+  "name": "Torgau",
+  "slug": "torgau",
+  "ags": "14730320",
+  "bundesland": "Sachsen",
+  "einwohner": 20000,
+  "modell": {
+    "typ": "pauschale",
+    "beschreibung": "Feste monatliche Elternbeiträge je nach Alter und Betreuungsumfang. ACHTUNG: Datenlage unsicher – Werte sind nicht verifiziert.",
+    "altersgruppen": [
+      { "key": "u3", "label": "unter 3 Jahre (Krippe)", "alter_von_monate": 0, "alter_bis_monate": 36 },
+      { "key": "ue3", "label": "3 Jahre bis Einschulung (Kindergarten)", "alter_von_monate": 36, "alter_bis_monate": 84 }
+    ],
+    "betreuungsstufen": [
+      { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std./Woche", "betraege": { "u3": 130, "ue3": 90 } },
+      { "stunden_von": 25, "stunden_bis": 45, "label": "über 25 bis 45 Std./Woche", "betraege": { "u3": 200, "ue3": 140 } },
+      { "stunden_von": 45, "stunden_bis": 55, "label": "über 45 bis 55 Std./Woche", "betraege": { "u3": 240, "ue3": 165 } }
+    ]
+  },
+  "geschwisterrabatt": {
+    "typ": "prozent",
+    "wert": 50,
+    "ab_kinderzahl": 2,
+    "beschreibung": "Für jedes weitere gleichzeitig betreute Kind wird der Beitrag um 50 % ermäßigt (unbestätigt)."
+  },
+  "essensgeld": {
+    "betrag": 65,
+    "von": null,
+    "bis": null,
+    "hinweis": "Durchschnittliches Verpflegungsgeld pro Monat (unbestätigt)."
+  },
+  "beitragsfreie_jahre": null,
+  "hinweise": [
+    "Datenlage unsicher – die Werte müssen anhand der aktuellen Satzung des Trägers geprüft und bestätigt werden.",
+    "In Sachsen legen die Kommunen bzw. Träger die Elternbeiträge innerhalb gesetzlicher Mindest- und Höchstsätze fest; die Beträge können je Einrichtung deutlich abweichen."
+  ],
+  "quelle_url": null,
+  "satzung_stand": "2023-01-01",
+  "zuletzt_geprueft": "2026-07-07",
+  "konfidenz": "unsicher"
+}
