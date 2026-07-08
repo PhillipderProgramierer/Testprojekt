@@ -1,0 +1,41 @@
+{
+  "name": "München",
+  "slug": "muenchen",
+  "ags": "09162000",
+  "bundesland": "Bayern",
+  "einwohner": 1512000,
+  "modell": {
+    "typ": "pauschale",
+    "beschreibung": "Feste monatliche Beiträge je nach Alter des Kindes und Betreuungsumfang, unabhängig vom Einkommen.",
+    "altersgruppen": [
+      { "key": "u3", "label": "unter 3 Jahre (Krippe)", "alter_von_monate": 0, "alter_bis_monate": 36 },
+      { "key": "ue3", "label": "3 Jahre bis Einschulung (Kindergarten)", "alter_von_monate": 36, "alter_bis_monate": 84 }
+    ],
+    "betreuungsstufen": [
+      { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std./Woche", "betraege": { "u3": 150, "ue3": 90 } },
+      { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std./Woche", "betraege": { "u3": 220, "ue3": 130 } },
+      { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std./Woche", "betraege": { "u3": 290, "ue3": 170 } }
+    ]
+  },
+  "geschwisterrabatt": {
+    "typ": "prozent",
+    "wert": 50,
+    "ab_kinderzahl": 2,
+    "beschreibung": "Für jedes weitere gleichzeitig betreute Kind wird der Beitrag um 50 % ermäßigt."
+  },
+  "essensgeld": {
+    "betrag": 85,
+    "von": null,
+    "bis": null,
+    "hinweis": "Durchschnittliche Verpflegungskosten pro Monat (Beispiel-Wert, vor Launch prüfen)."
+  },
+  "beitragsfreie_jahre": null,
+  "hinweise": [
+    "Der Freistaat Bayern bezuschusst die Kindergartenbeiträge; der hier gezeigte Betrag ist der verbleibende Elternanteil.",
+    "Die tatsächlichen Beiträge können je nach Träger (städtisch, kirchlich, privat) abweichen."
+  ],
+  "quelle_url": null,
+  "satzung_stand": "2024-09-01",
+  "zuletzt_geprueft": "2026-07-07",
+  "konfidenz": "extrahiert"
+}

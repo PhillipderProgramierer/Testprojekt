@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { ladeKommunen } from "../lib/kommunen";
+
+const kommunen = ladeKommunen();
+const jahr = new Date().getFullYear();
+
+const title = `Kita-Gebühren berechnen ${jahr} – Elternbeitrag für Ihre Stadt | KitaKosten`;
+const description =
+  "Kostenloser Kita-Gebührenrechner für deutsche Kommunen: Berechnen Sie den monatlichen Elternbeitrag nach Einkommen, Alter und Betreuungsumfang – inkl. Geschwisterrabatt und Verpflegung.";
+
+const appJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "KitaKosten – Kita-Gebührenrechner",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  description,
+};
+---
+
+<BaseLayout title={title} description={description} path="/" jsonLd={[appJsonLd]}>
+  <section class="bg-gradient-to-b from-brand-50 to-white">
+    <div class="mx-auto max-w-content px-4 py-14 sm:py-20">
+      <h1 class="max-w-3xl text-3xl font-bold tracking-tight sm:text-5xl">
+        Was kostet die Kita in Ihrer Stadt?
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-slate-600">
+        Berechnen Sie den voraussichtlichen monatlichen Elternbeitrag für die Kinderbetreuung –
+        kostenlos, ohne Anmeldung und ohne Tracking. Wählen Sie Ihre Kommune und legen Sie los.
+      </p>
+
+      <div class="mt-8 max-w-xl">
+        <label for="kommune-suche" class="sr-only">Kommune suchen</label>
+        <input
+          id="kommune-suche"
+          type="search"
+          placeholder="Stadt suchen, z. B. Köln …"
+          autocomplete="off"
+          class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base shadow-sm focus:border-brand-500 focus:ring-brand-500"
+          aria-controls="kommune-liste"
+        />
+        <ul id="kommune-liste" class="mt-4 grid gap-2 sm:grid-cols-2">
+          {
+            kommunen.map((k) => (
+              <li data-name={k.name.toLowerCase()}>
+                <a
+                  href={`/kita-gebuehren/${k.slug}/`}
+                  class="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 hover:border-brand-300 hover:bg-brand-50"
+                >
+                  <span class="font-medium">{k.name}</span>
+                  <span class="text-sm text-slate-500">{k.bundesland}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p id="kein-treffer" class="mt-3 hidden text-sm text-slate-500">
+          Keine Stadt gefunden. Ihre Kommune fehlt noch – wir erweitern die Datenbasis laufend.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-content px-4 py-12">
+    <div class="grid gap-6 sm:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <h2 class="text-lg font-semibold">Einkommen berücksichtigt</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          In vielen Kommunen richtet sich der Beitrag nach dem Einkommen. Der Rechner bildet die
+          jeweilige Staffelung ab.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <h2 class="text-lg font-semibold">Rabatte & Verpflegung</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Geschwisterrabatte, beitragsfreie Jahre und das Essensgeld werden separat ausgewiesen –
+          transparent und nachvollziehbar.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-6">
+        <h2 class="text-lg font-semibold">Nachvollziehbar</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Zu jedem Ergebnis zeigen wir den kompletten Rechenweg und verlinken die maßgebliche
+          Satzung Ihrer Kommune.
+        </p>
+      </div>
+    </div>
+    <div class="mt-8">
+      <a href="/vergleich/" class="font-medium text-brand-700 hover:text-brand-800"
+        >Städtevergleich ansehen →</a
+      >
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const input = document.getElementById("kommune-suche") as HTMLInputElement | null;
+  const liste = document.getElementById("kommune-liste");
+  const keinTreffer = document.getElementById("kein-treffer");
+  if (input && liste && keinTreffer) {
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      let sichtbar = 0;
+      liste.querySelectorAll<HTMLLIElement>("li[data-name]").forEach((li) => {
+        const treffer = (li.dataset.name ?? "").includes(q);
+        li.hidden = !treffer;
+        if (treffer) sichtbar++;
+      });
+      keinTreffer.classList.toggle("hidden", sichtbar > 0);
+    });
+  }
+</script>

@@ -1,0 +1,85 @@
+{
+  "name": "Stuttgart",
+  "slug": "stuttgart",
+  "ags": "08111000",
+  "bundesland": "Baden-Württemberg",
+  "einwohner": 626000,
+  "modell": {
+    "typ": "einkommensstaffel",
+    "einkommensbasis": "brutto",
+    "beschreibung": "Der Elternbeitrag ist nach Bruttojahreseinkommen gestaffelt und zusätzlich nach feineren Altersgruppen (unter 2, 2 bis 3, ab 3 Jahren) differenziert.",
+    "altersgruppen": [
+      { "key": "u2", "label": "unter 2 Jahre", "alter_von_monate": 0, "alter_bis_monate": 24 },
+      { "key": "2_3", "label": "2 bis unter 3 Jahre", "alter_von_monate": 24, "alter_bis_monate": 36 },
+      { "key": "ue3", "label": "3 Jahre bis Einschulung", "alter_von_monate": 36, "alter_bis_monate": 84 }
+    ],
+    "einkommensstufen": [
+      {
+        "von": 0,
+        "bis": 30000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u2": 50, "2_3": 40, "ue3": 25 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u2": 70, "2_3": 55, "ue3": 35 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u2": 90, "2_3": 70, "ue3": 45 } }
+        ]
+      },
+      {
+        "von": 30000,
+        "bis": 45000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u2": 110, "2_3": 90, "ue3": 60 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u2": 150, "2_3": 125, "ue3": 80 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u2": 190, "2_3": 160, "ue3": 105 } }
+        ]
+      },
+      {
+        "von": 45000,
+        "bis": 60000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u2": 180, "2_3": 150, "ue3": 100 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u2": 250, "2_3": 210, "ue3": 135 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u2": 320, "2_3": 270, "ue3": 175 } }
+        ]
+      },
+      {
+        "von": 60000,
+        "bis": 75000,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u2": 250, "2_3": 210, "ue3": 135 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u2": 340, "2_3": 290, "ue3": 190 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u2": 440, "2_3": 370, "ue3": 240 } }
+        ]
+      },
+      {
+        "von": 75000,
+        "bis": null,
+        "betreuungsstufen": [
+          { "stunden_von": 0, "stunden_bis": 25, "label": "bis 25 Std.", "betraege": { "u2": 310, "2_3": 260, "ue3": 170 } },
+          { "stunden_von": 25, "stunden_bis": 35, "label": "über 25 bis 35 Std.", "betraege": { "u2": 430, "2_3": 360, "ue3": 235 } },
+          { "stunden_von": 35, "stunden_bis": 45, "label": "über 35 bis 45 Std.", "betraege": { "u2": 550, "2_3": 460, "ue3": 300 } }
+        ]
+      }
+    ]
+  },
+  "geschwisterrabatt": {
+    "typ": "prozent",
+    "wert": 50,
+    "ab_kinderzahl": 2,
+    "beschreibung": "Für jedes weitere gleichzeitig betreute Kind wird der Beitrag um 50 % ermäßigt."
+  },
+  "essensgeld": {
+    "betrag": 75,
+    "von": null,
+    "bis": null,
+    "hinweis": "Durchschnittliches Verpflegungsgeld pro Monat (Beispiel-Wert, vor Launch prüfen)."
+  },
+  "beitragsfreie_jahre": null,
+  "hinweise": [
+    "Maßgeblich ist das Bruttojahreseinkommen des Haushalts.",
+    "Für Familien mit geringem Einkommen kann eine vollständige Übernahme des Beitrags durch das Jugendamt beantragt werden."
+  ],
+  "quelle_url": null,
+  "satzung_stand": "2024-09-01",
+  "zuletzt_geprueft": "2026-07-07",
+  "konfidenz": "extrahiert"
+}

@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Impressum | KitaKosten"
+  description="Impressum und Anbieterkennzeichnung von KitaKosten."
+  path="/impressum/"
+  noindex={true}
+>
+  <div class="mx-auto max-w-3xl px-4 py-8">
+    <h1 class="text-3xl font-bold tracking-tight">Impressum</h1>
+    <p class="mt-4 text-sm text-slate-500">
+      Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz) / § 18 MStV.
+    </p>
+
+    <div class="artikel mt-6">
+      <h2>Diensteanbieter</h2>
+      <p>
+        [PLATZHALTER: Name / Firma]<br />
+        [PLATZHALTER: Straße und Hausnummer]<br />
+        [PLATZHALTER: PLZ und Ort]<br />
+        [PLATZHALTER: Land]
+      </p>
+
+      <h2>Kontakt</h2>
+      <p>
+        E-Mail: [PLATZHALTER: kontakt@ihre-domain.de]<br />
+        Telefon: [PLATZHALTER: optional]
+      </p>
+
+      <h2>Vertretungsberechtigte Person</h2>
+      <p>[PLATZHALTER: Name der vertretungsberechtigten Person]</p>
+
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p>
+        [PLATZHALTER: Name]<br />
+        [PLATZHALTER: Anschrift]
+      </p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>
+        Die auf dieser Website bereitgestellten Informationen zu Kita-Gebühren wurden mit größter
+        Sorgfalt zusammengestellt, teilweise automatisiert aus kommunalen Satzungen extrahiert. Es
+        wird jedoch keine Gewähr für Aktualität, Richtigkeit und Vollständigkeit übernommen.
+        Maßgeblich ist ausschließlich die jeweils gültige Satzung der Kommune. Die Angaben stellen
+        keine Rechtsberatung dar.
+      </p>
+
+      <h2>Haftung für Links</h2>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen
+        Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
+        verantwortlich.
+      </p>
+
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch die Betreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+        deutschen Urheberrecht.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

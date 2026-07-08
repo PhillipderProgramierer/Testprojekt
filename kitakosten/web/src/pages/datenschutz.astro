@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Datenschutzerklärung | KitaKosten"
+  description="Datenschutzerklärung von KitaKosten. Wir setzen keine Cookies und kein Tracking ein."
+  path="/datenschutz/"
+  noindex={true}
+>
+  <div class="mx-auto max-w-3xl px-4 py-8">
+    <h1 class="text-3xl font-bold tracking-tight">Datenschutzerklärung</h1>
+
+    <div class="artikel mt-6">
+      <h2>1. Datenschutz auf einen Blick</h2>
+      <p>
+        Diese Website ist bewusst datensparsam gestaltet. Es werden <strong>keine Cookies</strong>
+        gesetzt und <strong>kein Tracking</strong> eingesetzt. Die Berechnung des Kita-Beitrags
+        erfolgt vollständig lokal in Ihrem Browser; Ihre Eingaben (Einkommen, Alter, Betreuungsumfang)
+        werden <strong>nicht an einen Server übertragen</strong> und nicht gespeichert.
+      </p>
+
+      <h2>2. Verantwortliche Stelle</h2>
+      <p>
+        Verantwortlich für die Datenverarbeitung auf dieser Website ist der im
+        <a href="/impressum/">Impressum</a> genannte Diensteanbieter.
+      </p>
+
+      <h2>3. Hosting und Server-Logfiles</h2>
+      <p>
+        Die Website wird bei [PLATZHALTER: Hosting-Anbieter, z. B. Cloudflare Pages] gehostet. Beim
+        Aufruf der Seiten kann der Anbieter technisch notwendige Zugriffsdaten (z. B. IP-Adresse,
+        Datum und Uhrzeit des Zugriffs, abgerufene Seite) verarbeiten, um die Auslieferung der
+        Website und deren Sicherheit zu gewährleisten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f
+        DSGVO (berechtigtes Interesse an einem sicheren Betrieb). Details finden Sie in der
+        Datenschutzerklärung des Anbieters: [PLATZHALTER: Link].
+      </p>
+
+      <h2>4. Webanalyse</h2>
+      <p>
+        Sofern zu einem späteren Zeitpunkt eine anonyme, cookiefreie Reichweitenmessung (z. B.
+        Cloudflare Web Analytics) eingesetzt wird, erfolgt diese ohne personenbezogene Profile und
+        ohne Cookies. [PLATZHALTER: Diesen Abschnitt anpassen, sobald Analytics aktiv ist.]
+      </p>
+
+      <h2>5. Ihre Rechte</h2>
+      <p>
+        Sie haben im Rahmen der gesetzlichen Bestimmungen das Recht auf Auskunft, Berichtigung,
+        Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten, ein
+        Widerspruchsrecht sowie ein Recht auf Datenübertragbarkeit. Zudem können Sie sich bei einer
+        Aufsichtsbehörde beschweren.
+      </p>
+
+      <h2>6. Kontakt</h2>
+      <p>
+        Bei Fragen zum Datenschutz erreichen Sie uns unter: [PLATZHALTER: kontakt@ihre-domain.de].
+      </p>
+
+      <p class="text-sm text-slate-500">Stand dieser Erklärung: [PLATZHALTER: Datum].</p>
+    </div>
+  </div>
+</BaseLayout>

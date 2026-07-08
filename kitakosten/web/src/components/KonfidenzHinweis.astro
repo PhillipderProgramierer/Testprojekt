@@ -1,0 +1,33 @@
+---
+import type { Konfidenz } from "../lib/gebuehrenmodell";
+
+export interface Props {
+  konfidenz: Konfidenz;
+}
+const { konfidenz } = Astro.props;
+
+const config: Record<Konfidenz, { text: string; klasse: string } | null> = {
+  verifiziert: null,
+  extrahiert: {
+    text: "Diese Angaben wurden automatisiert aus der Satzung extrahiert und noch nicht abschließend manuell verifiziert. Bitte prüfe die maßgeblichen Werte in der Original-Satzung.",
+    klasse: "bg-amber-50 text-amber-900 ring-amber-200",
+  },
+  unsicher: {
+    text: "Für diese Kommune ist die Datenlage unsicher. Die angezeigten Werte sind grobe Schätzungen und müssen unbedingt anhand der aktuellen Satzung geprüft werden.",
+    klasse: "bg-red-50 text-red-900 ring-red-200",
+  },
+};
+
+const eintrag = config[konfidenz];
+---
+
+{
+  eintrag && (
+    <div class:list={["rounded-xl p-4 text-sm ring-1", eintrag.klasse]} role="note">
+      <p class="flex items-start gap-2">
+        <span aria-hidden="true">⚠️</span>
+        <span>{eintrag.text}</span>
+      </p>
+    </div>
+  )
+}
