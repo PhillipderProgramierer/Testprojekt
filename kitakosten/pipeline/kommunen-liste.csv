@@ -1,7 +1,54 @@
 name,bundesland,ags,einwohner,satzung_url,status
-Berlin,Berlin,11000000,3677000,,handgepflegt
-München,Bayern,09162000,1512000,,handgepflegt
-Köln,Nordrhein-Westfalen,05315000,1073000,,handgepflegt
-Stuttgart,Baden-Württemberg,08111000,626000,,handgepflegt
-Nagold,Baden-Württemberg,08235047,24500,,handgepflegt
-Torgau,Sachsen,14730320,20000,,unsicher
+Berlin,Berlin,11000000,3677000,,vorhanden
+München,Bayern,09162000,1512000,,vorhanden
+Köln,Nordrhein-Westfalen,05315000,1073000,,vorhanden
+Torgau,Sachsen,14730320,20000,,vorhanden
+Stuttgart,Baden-Württemberg,08111000,626000,,vorhanden
+Nagold,Baden-Württemberg,08235047,24500,,vorhanden
+Mannheim,Baden-Württemberg,,315000,,geplant
+Karlsruhe,Baden-Württemberg,,308000,,geplant
+Freiburg im Breisgau,Baden-Württemberg,,236000,,geplant
+Heidelberg,Baden-Württemberg,,160000,,geplant
+Ulm,Baden-Württemberg,,128000,,geplant
+Heilbronn,Baden-Württemberg,,126000,,geplant
+Pforzheim,Baden-Württemberg,,126000,,geplant
+Reutlingen,Baden-Württemberg,,116000,,geplant
+Esslingen am Neckar,Baden-Württemberg,,94000,,geplant
+Ludwigsburg,Baden-Württemberg,,93000,,geplant
+Tübingen,Baden-Württemberg,,91000,,geplant
+Villingen-Schwenningen,Baden-Württemberg,,86000,,geplant
+Konstanz,Baden-Württemberg,,84000,,geplant
+Aalen,Baden-Württemberg,,68000,,geplant
+Sindelfingen,Baden-Württemberg,,65000,,geplant
+Schwäbisch Gmünd,Baden-Württemberg,,61000,,geplant
+Friedrichshafen,Baden-Württemberg,,61000,,geplant
+Offenburg,Baden-Württemberg,,60000,,geplant
+Göppingen,Baden-Württemberg,,58000,,geplant
+Baden-Baden,Baden-Württemberg,,55000,,geplant
+Waiblingen,Baden-Württemberg,,55000,,geplant
+Ravensburg,Baden-Württemberg,,51000,,geplant
+Rastatt,Baden-Württemberg,,50000,,geplant
+Böblingen,Baden-Württemberg,,50000,,geplant
+Lörrach,Baden-Württemberg,,49000,,geplant
+Leonberg,Baden-Württemberg,,49000,,geplant
+Singen,Baden-Württemberg,,49000,,geplant
+Fellbach,Baden-Württemberg,,46000,,geplant
+Filderstadt,Baden-Württemberg,,46000,,geplant
+Bruchsal,Baden-Württemberg,,45000,,geplant
+Weinheim,Baden-Württemberg,,45000,,geplant
+Bietigheim-Bissingen,Baden-Württemberg,,43000,,geplant
+Schwäbisch Hall,Baden-Württemberg,,41000,,geplant
+Ettlingen,Baden-Württemberg,,40000,,geplant
+Kirchheim unter Teck,Baden-Württemberg,,40000,,geplant
+Ostfildern,Baden-Württemberg,,39000,,geplant
+Backnang,Baden-Württemberg,,37000,,geplant
+Tuttlingen,Baden-Württemberg,,36000,,geplant
+Crailsheim,Baden-Württemberg,,35000,,geplant
+Balingen,Baden-Württemberg,,34000,,geplant
+Kornwestheim,Baden-Württemberg,,34000,,geplant
+Rheinfelden (Baden),Baden-Württemberg,,33000,,geplant
+Herrenberg,Baden-Württemberg,,32000,,geplant
+Gaggenau,Baden-Württemberg,,30000,,geplant
+Emmendingen,Baden-Württemberg,,28000,,geplant
+Wangen im Allgäu,Baden-Württemberg,,27000,,geplant
+Rottweil,Baden-Württemberg,,25000,,geplant
